@@ -1,67 +1,38 @@
-
-
 #include <iostream>
-#include<cmath>
 
 using namespace std;
 
 int main()
 {
-	int selection;
-	float area;
-
-	cout << "Gometry Calculator\n";
-	cout << "	1. Calculate the Area of a Circle\n";
-	cout << "	2. Calculate the Area of a Rectangle\n";
-	cout << "	3. Calculate the Area of a triangle\n";
-	cout << "	4. Quit\n";
-	cout << "Enter your choice (1-4):";
-	cin >> selection;
-	
-	if (selection < 1 || selection > 4)
-		cout << "Please enter a valid choice\n\n";
-	else {
-		switch (selection)
-		{
-		case 1: {
-			float radius;
-			cout << "What is the Circle's radius ?";
-			cin >> radius;
-			area = pow(radius, 2) * 3.14159;
-			cout << "\nThe Circle's area is " << area;
-			cout << endl << endl;
-
-		}break;
-		case 2: {
-			float length;
-			float width;
-			cout << "What is the Rectangle's length? ";
-			cin >> length;
-			cout << "\nWhat is it's width? ";
-			cin >> width;
-			area = length * width;
-			cout << "\nThe Rectangle's area is " << area;
-			cout << endl << endl;
-
-		}break;
-		case 3: {
-			float base;
-			float height;
-			cout << "What is the Triangle's base? ";
-			cin >> base;
-			cout << "\nWhat is it's height? ";
-			cin >> height;
-			area = base * height * .5;
-			cout << "\nThe Triagle's area is " << area;
-			cout << endl << endl;
-
-		}break;
+    int year;
+    int month;
+    bool leap;
+    cout << "Enter a month (1-12): ";
+    cin >> month;
+    cout << "\nEnter a year: ";
+    cin >> year;
 
 
-		default: cout << "\nYou have choosen to quit the program.\n\n";
-			   break;
-		}
-	}
-	return 0;
+    //determines if the year is a leap year
+    if (year % 100 == 0 && year % 400 == 0)
+        leap = true;
+    else if (year % 100 != 0 && year % 4 == 0)
+        leap = true;
+    else
+        leap = false;
+
+
+    if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+        cout << "\n31";
+    else if (month == 4 || month == 6 || month == 9 || month == 11)
+        cout << "\n30";
+    else if (month == 2 && leap == true)
+        cout << "\n29";
+    else if (month == 2 && leap == false)
+        cout << "\n28";
+    else
+        cout << "\nPlease make sure the month is between 1 and 12";
+
+
+    return 0;
 }
-
