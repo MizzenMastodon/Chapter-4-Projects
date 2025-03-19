@@ -1,38 +1,54 @@
+// Shipping rates.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
+
 int main()
 {
-    int year;
-    int month;
-    bool leap;
-    cout << "Enter a month (1-12): ";
-    cin >> month;
-    cout << "\nEnter a year: ";
-    cin >> year;
+    float weight;
+    float distance;
+    float rate;
+    float charge;
 
 
-    //determines if the year is a leap year
-    if (year % 100 == 0 && year % 400 == 0)
-        leap = true;
-    else if (year % 100 != 0 && year % 4 == 0)
-        leap = true;
-    else
-        leap = false;
+    cout << "Weight of Package in Kg: ";
+    cin >> weight;
+    cout << "\nDistance Shipped in Miles: ";
+    cin >> distance;
+
+    //detrmines the shipping rate based on given information
+    if (weight > 0 && weight <= 2)
+        rate = 1.1;
+    else if (weight > 2 && weight <= 6)
+        rate = 2.2;
+    else if (weight > 6 && weight <= 10)
+        rate = 3.7;
+    else (weight >= 10);
+    rate = 4.8;
 
 
-    if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
-        cout << "\n31";
-    else if (month == 4 || month == 6 || month == 9 || month == 11)
-        cout << "\n30";
-    else if (month == 2 && leap == true)
-        cout << "\n29";
-    else if (month == 2 && leap == false)
-        cout << "\n28";
-    else
-        cout << "\nPlease make sure the month is between 1 and 12";
+
+    //seperates the distance into 500 mile sections
+    int section = distance / 500;
 
 
-    return 0;
+    //error handling
+    if (distance < 10 || distance > 30000)
+        cout << "\nPlease enter a distance between 10 and 30000 miles.";
+    if (weight < 0 || weight > 20)
+        cout << "\nPlease enter a weight above 0 Kg and below 20 Kg";
+
+
+    if (distance > 10 && distance <= 30000 && weight > 0 && weight <= 20) {
+        charge = rate * section;
+        cout << fixed << setprecision(2) << "\nYour charge is $" << charge;
+
+    }
+
 }
+
+
